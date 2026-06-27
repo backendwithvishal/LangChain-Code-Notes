@@ -1,0 +1,57 @@
+# LangChain Core
+langchain
+langchain-core
+
+# OpenAI Integration
+langchain-openai
+openai
+
+# Anthropic Integration
+langchain-anthropic
+
+# Google Gemini (PaLM) Integration
+langchain-google-genai
+google-generativeai
+
+# Hugging Face Integration
+langchain-huggingface
+transformers
+huggingface-hub
+
+# Environment Variable Management
+python-dotenv
+
+# Machine Learning Utilities
+numpy
+scikit-learn
+
+# LangChain Core (Free & Open Source)
+langchain
+langchain-core
+
+# Ollama - Run LLMs locally (100% Free)
+langchain-ollama
+ollama
+
+# Hugging Face - Free models & inference
+langchain-huggingface
+transformers
+huggingface-hub
+sentence-transformers
+
+# Google Gemini - Has a FREE tier (no credit card for basic use)
+langchain-google-genai
+google-generativeai
+
+# Groq - Free tier available (very fast inference)
+langchain-groq
+groq
+
+# Vector Store (Free & local)
+faiss-cpu
+chromadb
+
+# Environment & Utilities
+python-dotenv
+numpy
+scikit-learn
