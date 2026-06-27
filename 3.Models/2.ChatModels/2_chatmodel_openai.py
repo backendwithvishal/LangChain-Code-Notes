@@ -11,6 +11,6 @@ chat = ChatOpenAI(
     temperature=0.5
 )
 
-result = chat.invoke("What is the langchain") # Invoke the model with the specified prompt
+result = chat.invoke("What is the Node.js") # Invoke the model with the specified prompt
 
 print(result.content) # print the content from the result
