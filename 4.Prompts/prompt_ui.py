@@ -29,6 +29,10 @@ style_input = st.selectbox(
 length_input = st.selectbox(
     "Explanation Length",["Short (1-2 paragraphs)","Medium (3-5 paragraphs)","Long (Detailed Explanation)",])
 
+template = PromptTemplate(
+    template="""  """
+) 
+
 if st.button("Summarize"):
 
     prompt = f"""
