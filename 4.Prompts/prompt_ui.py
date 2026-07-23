@@ -2,6 +2,8 @@ import os
 import streamlit as st
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
+from langchain_core.prompts import PromptTemplate
+
 
 # Load environment variables
 load_dotenv()
@@ -16,35 +18,16 @@ st.header("📄 Research Tool")
 
 # Research paper selection
 paper_input = st.selectbox(
-    "Select Research Paper",
-    [
-        "Attention Is All You Need",
-        "BERT: Pre-training of Deep Bidirectional Transformers",
-        "GPT-3: Language Models are Few-Shot Learners",
-        "Diffusion Models Beat GANs on Image Synthesis",
-    ],
-)
+    "Select Research Paper", ["Attention Is All You Need","BERT: Pre-training of Deep Bidirectional Transformers",
+    "GPT-3: Language Models are Few-Shot Learners","Diffusion Models Beat GANs on Image Synthesis",]) 
 
 # Explanation style
 style_input = st.selectbox(
-    "Explanation Style",
-    [
-        "Beginner-Friendly",
-        "Technical",
-        "Code-Oriented",
-        "Mathematical",
-    ],
-)
+    "Explanation Style",["Beginner-Friendly","Technical","Code-Oriented","Mathematical",] )
 
 # Explanation length
 length_input = st.selectbox(
-    "Explanation Length",
-    [
-        "Short (1-2 paragraphs)",
-        "Medium (3-5 paragraphs)",
-        "Long (Detailed Explanation)",
-    ],
-)
+    "Explanation Length",["Short (1-2 paragraphs)","Medium (3-5 paragraphs)","Long (Detailed Explanation)",])
 
 if st.button("Summarize"):
 
