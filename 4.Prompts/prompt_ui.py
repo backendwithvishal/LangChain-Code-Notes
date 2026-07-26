@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 from langchain_core.prompts import PromptTemplate
 
-
 # Load environment variables
 load_dotenv()
 
@@ -29,6 +28,7 @@ style_input = st.selectbox(
 length_input = st.selectbox(
     "Explanation Length",["Short (1-2 paragraphs)","Medium (3-5 paragraphs)","Long (Detailed Explanation)",])
 
+
 template = PromptTemplate(
     template=""" Please summarize the research paper titled "{paper_input}" with the following specifications:
 Explanation Style: {style_input}  
@@ -42,9 +42,16 @@ If certain information is not available in the paper, respond with: "Insufficien
 Ensure the summary is clear, accurate, and aligned with the provided style and length. """
 ) 
 
+input_variables=["paper_input","style_input","length_input"]
+
+# fill the placeholder
+prompt = template.invoke({
+    "paper_input":paper_input,
+    "style_input":style_input,
+    "length_input":length_input,
+})
+
+# calling the LLM model
 if st.button("Summarize"):
-
-
-
-    st.subheader("Summary")
-    st.write()
+    result = model.invoke(prompt)
+    st.write(result.content)
