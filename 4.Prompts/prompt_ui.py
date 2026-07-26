@@ -13,7 +13,7 @@ model = ChatGroq(
     api_key=os.getenv("GROQ_API_KEY")
 )
 
-st.header("📄 Research Tool")
+st.header("📄 Research Tool 🔍")
 
 # Research paper selection
 paper_input = st.selectbox(
