@@ -32,14 +32,13 @@ length_input = st.selectbox(
 # prompt
 template = _load_prompt('template.json')
 
-# fill the placeholder
-prompt = template.invoke({
-    "paper_input":paper_input,
-    "style_input":style_input,
-    "length_input":length_input,
-})
-
 # calling the LLM model
 if st.button("Summarize"):
-    result = model.invoke(prompt)
+    Chain = template | model
+    # fill the placeholder
+    result = Chain.invoke({
+        "paper_input":paper_input,
+        "style_input":style_input,
+        "length_input":length_input,
+    })
     st.write(result.content)
