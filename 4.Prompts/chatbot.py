@@ -1,3 +1,4 @@
+import os
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 
@@ -5,7 +6,7 @@ load_dotenv()
 
 model = ChatGroq(
     model = "llama-3.3-70b-versatile",
-    api_key="GROQ_API_KEY"
+    api_key=os.getenv("GROQ_API_KEY")
 )
 
 while True:
@@ -17,3 +18,5 @@ while True:
     print("AI: ", result.content)
 
 response = model.invoke()
+
+# 43:16
