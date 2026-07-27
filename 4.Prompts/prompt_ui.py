@@ -50,9 +50,7 @@ with open("template.json", "r", encoding="utf-8") as file:
 template = _load_prompt(config)
 
 if st.button("Summarize"):
-
     chain = template | model
-
     result = chain.invoke(
         {
             "paper_input": paper_input,
@@ -60,5 +58,4 @@ if st.button("Summarize"):
             "length_input": length_input,
         }
     )
-
     st.write(result.content)
