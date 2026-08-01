@@ -36,4 +36,4 @@ Review by Aryan Sanam """
 
 print(result)
 # print(["summary"])
-print(["senriment"])
+print(["sentiment"])
