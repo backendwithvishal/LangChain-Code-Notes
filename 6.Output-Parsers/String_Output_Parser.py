@@ -18,7 +18,18 @@ template = PromptTemplate(
 )
 
 #  Second Prompt --> summary
-template = PromptTemplate(
+template1 = PromptTemplate(
     template = "Write a 5 line summary on the following text. /n {text}",
     input_variables = ["text"]
 )
+
+# Template
+prompt = template.invoke({'topic':'Ai engineering'})
+
+result = model.invoke(prompt)
+
+prompt1 = template1.invoke({'text':result.content})
+
+result1 = model.invoke(prompt1)
+
+print(result1.content)
