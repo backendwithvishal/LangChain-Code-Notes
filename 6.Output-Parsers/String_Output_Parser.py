@@ -5,7 +5,7 @@ from langchain_core.prompts import PromptTemplate
 load_dotenv()
 
 llm = HuggingFaceEndpoint(
-    repo_id="TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+    repo_id="Qwen/Qwen2.5-7B-Instruct",
     task="text-generation"
 )
 
@@ -13,22 +13,21 @@ model = ChatHuggingFace(llm=llm)
 
 # First Prompt --> detailed report
 template = PromptTemplate(
-    template = "Write a detailed report on {topic}",
-    input_variables = ["topic"]
+    template="Write a detailed report on {topic}",
+    input_variables=["topic"]
 )
 
-#  Second Prompt --> summary
+# Second Prompt --> summary
 template1 = PromptTemplate(
-    template = "Write a 5 line summary on the following text. /n {text}",
-    input_variables = ["text"]
+    template="Write a 5 line summary on the following text.\n{text}",
+    input_variables=["text"]
 )
 
-# Template
-prompt = template.invoke({'topic':'Ai engineering'})
+prompt = template.invoke({"topic": "AI Engineering"})
 
 result = model.invoke(prompt)
 
-prompt1 = template1.invoke({'text':result.content})
+prompt1 = template1.invoke({"text": result.content})
 
 result1 = model.invoke(prompt1)
 
