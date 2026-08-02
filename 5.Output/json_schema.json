@@ -1,10 +1,13 @@
 {
+    "$comment": "JSON Schema defining the structure and required fields for a Student object",
     "title": "Student",
     "description": "Schema about Student",
     "type": "object",
     "properties": {
         "name": "string",
-        "age":"interger"
+        "age": "interger"
     },
-    "required":["name"]
+    "required": [
+        "name"
+    ]
 }

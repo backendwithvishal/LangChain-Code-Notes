@@ -1,13 +1,17 @@
+# Import ChatGroq integration from LangChain
 from langchain_groq import ChatGroq
+# Import load_dotenv to load environment variables from .env file
 from dotenv import load_dotenv
 
+# Load environment variables (such as GROQ_API_KEY) from .env file
 load_dotenv()
 
+# Initialize the Groq LLM model instance with Llama 3.3 70B
 model = ChatGroq(
     model="llama-3.3-70b-versatile"
 )
 
-# JSON Schema
+# Define a standard JSON Schema dictionary for structured output formatting
 json_schema = {
     "title": "Review",
     "type": "object",
@@ -58,8 +62,10 @@ json_schema = {
     ]
 }
 
+# Attach the JSON schema directly to the model using with_structured_output
 structured_model = model.with_structured_output(json_schema)
 
+# Input text containing the product review details to process
 review = """
 I recently upgraded to the Samsung Galaxy S24 Ultra, and I must say, it’s an absolute powerhouse! The Snapdragon 8 Gen 3 processor makes everything lightning fast—whether I’m gaming, multitasking, or editing photos. The 5000mAh battery easily lasts a full day even with heavy use, and the 45W fast charging is a lifesaver.
 
@@ -76,6 +82,8 @@ Pros:
 Review by Aryan Sanam
 """
 
+# Execute the model to parse the review text into a JSON dict structured according to json_schema
 result = structured_model.invoke(review)
 
+# Print the resulting JSON dictionary output
 print(result)
