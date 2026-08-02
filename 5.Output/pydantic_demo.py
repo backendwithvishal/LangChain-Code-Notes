@@ -2,10 +2,10 @@ from pydantic import BaseModel
 
 class Student(BaseModel):
 
-    name: str
+    name: str = 'Vishal'
 
-new_student = {'name':'Vishal'}
+new_student = {}
 
 student = Student(**new_student)
 
-print(type(student))
+print(student.name)
