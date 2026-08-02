@@ -1,7 +1,7 @@
 from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 from typing import Literal, TypedDict, Annotated, Optional
-from pydantic import BaseModel
+from pydantic import BaseModel , Field
 
 load_dotenv()
 
@@ -9,14 +9,14 @@ model = ChatGroq(
     model="llama-3.3-70b-versatile"
 )
 
-class Review(TypedDict):
+class Review(BaseModel):
 
-    key_themes: Annotated[list[str], "List down all the key themes of the review which are generally related to product"]
-    summery: Annotated[str, "A brief summary of the review"]
-    sentiment: Annotated[Literal["Postive", "Negative", "Neutral"], "The sentiment of the review either negative, positive or neutral"]
-    pros: Annotated[Optional[list[str]], "Write down all the pros inside a list"]
-    cons: Annotated[Optional[list[str]], "Write down all the cons inside a list"]
-    name: Annotated[Optional[str], "Write down the name of the reviewer"]
+    key_themes: list[str] = Field(description= "List down all the key themes of the review which are generally related to product") 
+    summery: str = Field(description= "A brief summary of the review")
+    sentiment: Literal ["Postive", "Negative", "Neutral"]= Field(description= "The sentiment of the review either negative, positive or neutral")
+    pros: Optional[list[str]] = Field(default= None, description= "Write down all the pros inside a list")
+    cons: Optional[list[str]] = Field(default= None, description= "Write down all the cons inside a list")
+    name: Optional[str] = Field(default= None, description= "Write down the name of the reviewer")
 
 structured_model = model.with_structured_output(Review)
 
@@ -37,4 +37,4 @@ Review by Aryan Sanam """
 
 # print(result)
 # print(["summary"])
-print(result["name"])
+print(result)
