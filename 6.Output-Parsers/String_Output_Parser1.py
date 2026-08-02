@@ -2,7 +2,7 @@ from anyio import TemporaryDirectory
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
-from langchain_core.output_parsers import StringOutputParser
+from langchain_core.output_parsers import StrOutputParser
 
 load_dotenv()
 
@@ -25,7 +25,7 @@ template1 = PromptTemplate(
     input_variables=["text"]
 )
 
-parser = StringOutputParser()
+parser = StrOutputParser()
 
 chain = template | model | parser | template1 | model | parser
 
