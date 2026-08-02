@@ -1,7 +1,7 @@
-from typing import Literal
 from langchain_groq import ChatGroq
 from dotenv import load_dotenv
-from typing import TypedDict, Annotated, Optional
+from typing import Literal, TypedDict, Annotated, Optional
+from pydantic import BaseModel
 
 load_dotenv()
 
