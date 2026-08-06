@@ -21,3 +21,5 @@ chain = prompt | model | parser
 result = chain.invoke({'topic' : 'Indian Indenpendace Day'})
 
 print(result)
+
+graph = chain.get_graph().print_ascii()
