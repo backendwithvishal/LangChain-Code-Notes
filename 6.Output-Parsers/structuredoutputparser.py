@@ -1,7 +1,7 @@
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
-from langchain.output_parsers import StrOutputParser, ResponseSchema
+from langchain_core.output_parsers import StructuredOutputParser, ResponseSchema
 
 load_dotenv()
 
@@ -13,8 +13,23 @@ llm = HuggingFaceEndpoint(
 model = ChatHuggingFace(llm=llm)
 
 schema = [  
-    ResponseSchema(name='news_headline',description='Headline of the news'),
-    ResponseSchema(name='summary',description='2-3 line summary of the news'),
-    ResponseSchema(name='sentiment',description='Sentiment of the news'),
-    ResponseSchema(name='source',description='Source of the news')
+    ResponseSchema(name='Fact_1',description='fact 1 above the topic'),
+    ResponseSchema(name='Fact_2',description='fact 2 above the topic'),
+    ResponseSchema(name='Fact_3',description='fact 3 above the topic'),
 ]
+
+parser = StructuredOutputParser.from_response_schemas(schema)
+
+template = PromptTemplate(
+    template = 'Give me 3 fact about {topic} \n {format_instruction}',
+    input_variables = ['topic'],
+    partial_variables = {'format_instruction':parser.get_format_instructions()}
+)
+
+prompt = template.invoke({'topic':'Indian'})
+
+result = model.invoke(prompt)
+
+final_result = parser.parse(result)
+
+print(final_result)
