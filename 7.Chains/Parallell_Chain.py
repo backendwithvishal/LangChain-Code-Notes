@@ -85,3 +85,5 @@ The support vector machines in scikit-learn support both dense and sparse sample
 result = chain.invoke({"text": text})
 
 print(result)
+
+chain.get_graph().print_ascii()
