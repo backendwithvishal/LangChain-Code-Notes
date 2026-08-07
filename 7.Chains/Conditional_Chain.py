@@ -68,3 +68,5 @@ branch_chain = RunnableBranch(
 chain = classifier_chain | branch_chain
 
 print(chain.invoke({'feedback': 'this is a good phone'}))
+
+graph = chain.get_graph().print_ascii()
