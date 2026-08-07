@@ -33,9 +33,10 @@ openrouter_model = ChatOpenRouter(
 parser = StrOutputParser()
 
 prompt1 = PromptTemplate(
-    template = """
-    Review the following feedback and determine if it is positive or negative Feedback: {Feedback}""",
-    input_variables = ["Feedback"]
+    template = "Classify the sentiment of the following feedback text into postive or negative \n {feedback}",
+    input_variables = ["feedback"]
 )
 
-print(prompt1)
+classifier_chain = prompt1 | openrouter_model | parser
+
+print(classifier_chain.invoke({'feedback':'This is a terrible smartphone'}))
