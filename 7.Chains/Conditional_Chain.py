@@ -8,28 +8,33 @@ from langchain_core.runnables import RunnableParallel
 
 load_dotenv()
 
-''' 
-# Hugging Face Endpoint
+'''
+Hugging Face Endpoint
+
 llm = HuggingFaceEndpoint(
     repo_id="Qwen/Qwen2.5-7B-Instruct",
     task="conversational"
 )
 
-# Chat Model
-hf_model = ChatHuggingFace(llm=llm)
-'''
+Chat Model
 
-# --------------------------
+hf_model = ChatHuggingFace(llm=llm) '''
+
+# --------------------------------------------------
 # Groq Model
-# --------------------------
+# --------------------------------------------------
+
 groq_model = ChatGroq(
     model="llama-3.3-70b-versatile"
 )
 
-# --------------------------
+# --------------------------------------------------
 # OpenRouter Model
-# --------------------------
+# --------------------------------------------------
+
 openrouter_model = ChatOpenRouter(
     model="meta-llama/llama-3.3-70b-instruct",
     temperature=0
 )
+
+print("Import Successful!")
