@@ -34,4 +34,4 @@ chain = RunnableSequence(
 
 )
 
-print(chain.invoke({"topic": "My Dummy Girlfriend"}))
+print(chain.invoke({"topic": "AI"}))
