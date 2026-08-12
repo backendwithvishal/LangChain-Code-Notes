@@ -6,10 +6,11 @@ from langchain_core.runnables import RunnableSequence
 
 load_dotenv()
 
-prompt = PromptTemplate(
+prompt1 = PromptTemplate(
     template="Write information about {topic}",
     input_variables=["topic"]
 )
+
 
 model = ChatGroq(
     model="llama-3.1-8b-instant",
@@ -18,10 +19,19 @@ model = ChatGroq(
 
 parser = StrOutputParser()
 
-chain = RunnableSequence(
-    first=prompt,
-    middle=[model],
-    last=parser
+prompt2 = PromptTemplate(
+    template = 'Explain the following joke - {text} ',
+    input_variables = ['text']
 )
 
-print(chain.invoke({"topic": "India's 80th Independence Day in 2026"}))
+chain = RunnableSequence(
+    prompt1,
+    model,
+    parser,
+    prompt2,
+    model,
+    parser
+
+)
+
+print(chain.invoke({"topic": "My Dummy Girlfriend"}))
