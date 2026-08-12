@@ -23,3 +23,13 @@ model = ChatGroq(
 
 parser = StrOutputParser()
 
+report_gen_chain = RunnableSequence(prompt1, model, parser)
+
+branch_chain = RunnableBranch(
+    (lambda x: len(x.split()) > 200, RunnableSequence(prompt2, model, parser)),
+    RunnablePassthrough()
+) 
+
+final_chain = RunnableSequence(report_gen_chain, branch_chain)
+
+print(final_chain.invoke({'topic':'Russia vs Ukraine war'}))
