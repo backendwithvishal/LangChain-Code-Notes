@@ -15,6 +15,8 @@ prompt = PromptTemplate(
     input_variables = ['poem']
 )
 
+parser = StrOutputParser()
+
 loader = TextLoader('cricket.txt', encoding='utf-8')
 docus = loader.load()
 
@@ -27,3 +29,7 @@ docus = loader.load()
 print(docus[0].page_content)
 
 print(docus[0].metadata)
+
+chain = prompt | model | parser
+
+print(chain.invoke({'poem': docus[0].page_content}))
