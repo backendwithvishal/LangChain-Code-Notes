@@ -1,3 +1,3 @@
 from langchain_community.document_loaders import TextLoader
 
-loader = TextLoader('cricket.txt', )
+loader = TextLoader('cricket.txt', encoding='utf-8')
