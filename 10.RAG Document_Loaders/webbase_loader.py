@@ -1,41 +1,62 @@
+import os
+
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_groq import ChatGroq
-from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import PromptTemplate
+from langchain_core.output_parsers import StrOutputParser
 from dotenv import load_dotenv
+
 
 load_dotenv()
 
+# Set user agent for the web request
+os.environ["USER_AGENT"] = "Mozilla/5.0"
+
+
 # Create the Groq model
 model = ChatGroq(
-    model="llama-3.3-70b-versatile"
+    model="openai/gpt-oss-20b"
 )
 
+
 # Create the prompt
-# Use the same variable names everywhere
 prompt = PromptTemplate(
-    template="Answer the following question:\n{question}\n\nFrom the following text:\n{text}",
+    template="""
+Answer the question using the following webpage content.
+
+Question:
+{question}
+
+Webpage Content:
+{text}
+""",
     input_variables=["question", "text"]
 )
 
-# Convert model output into a simple string
+
+# Convert the model response into a string
 parser = StrOutputParser()
 
-# Load the webpage
-url = "https://www.flipkart.com/apple-macbook-air-m4-16-gb-256-gb-ssd-macos-sequoia-mc7a4hn-a/p/itmdd70ae2c75bc6?pid=COMH9ZWQ5G9QKEFQ&marketplace=FLIPKART&lid=LSTCOMH9ZWQ5G9QKEFQV8HOI1&pageUID=1785852362603"
 
+# Simple public webpage
+url = "https://www.langchain.com/"
+
+
+# Load the webpage
 loader = WebBaseLoader(url)
 
-# Load the webpage content
 docs = loader.load()
+
 
 # Create the chain
 chain = prompt | model | parser
 
-# Get the webpage text and send it with the question
-print(
-    chain.invoke({
-        "question": "what is the price of this product?",
-        "text": docs[0].page_content
-    })
-)
+
+# Ask a question about the webpage
+response = chain.invoke({
+    "question": "What is LangChain?",
+    "text": docs[0].page_content
+})
+
+
+print(response)
