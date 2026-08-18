@@ -1,3 +1,4 @@
+# Demonstration of setting up a Groq chat model with custom temperature setting
 from langchain_groq import ChatGroq # Import the ChatGroq class from the langchain_groq module
 from dotenv import load_dotenv # Import the load_dotenv function from the dotenv module
 load_dotenv() # Load environment variables from a .env file
