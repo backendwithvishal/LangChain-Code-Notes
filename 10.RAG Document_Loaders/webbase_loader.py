@@ -21,15 +21,7 @@ model = ChatGroq(
 
 # Create a prompt template instructing the model to answer questions based on webpage content
 prompt = PromptTemplate(
-    template="""
-Answer the question using the following webpage content.
-
-Question:
-{question}
-
-Webpage Content:
-{text}
-""",
+    template=""" Answer the question using the following webpage content Question: {question} Webpage Content: {text} """,
     input_variables=["question", "text"]
 )
 
@@ -55,4 +47,4 @@ response = chain.invoke({
 })
 
 # Print the model's response to the console
-print(response)
+print(response)
