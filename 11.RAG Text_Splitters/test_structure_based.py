@@ -4,3 +4,14 @@ text = ''' Space exploration has led to incredible scientific discoveries. From 
 
 These missions have not only expanded our knowledge of the universe but have also contributed to advancements in technology here on Earth. Satellite communications, GPS, and even certain medical imaging techniques trace their roots back to innovations driven by space programs '''
 
+# Initialize the RecursiveCharacterTextSplitter
+splitter = RecursiveCharacterTextSplitter(
+    chunk_size = 300,
+    chunk_overlap = 0
+)
+
+# Perform the RecursiveCharacterTextSplitter
+chunks = splitter.split_text(text)
+
+print(len(chunks))
+print(chunks)
