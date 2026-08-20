@@ -28,3 +28,9 @@ splitter = RecursiveCharacterTextSplitter.from_language(
     chunk_size = 300,
     chunk_overlap = 0,
 )
+
+# Perform the split
+chunk = splitter.split_text(text)
+
+print(len(chunk))
+print(chunk[0])
