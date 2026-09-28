@@ -1,0 +1,38 @@
+# Core LangChain Libraries
+langchain>=0.2.0
+langchain-core>=0.2.0
+langchain-community>=0.2.0
+langchain-text-splitters
+langchain-experimental
+
+# Model Provider Integrations
+langchain-groq
+langchain-huggingface
+langchain-openai
+langchain-openrouter
+transformers
+huggingface-hub
+sentence-transformers
+
+# Vector Stores & Retrieval
+faiss-cpu
+chromadb
+wikipedia
+
+# Document Parsers & Loaders
+pypdf
+beautifulsoup4
+requests
+
+# Data Validation & Parsing
+pydantic>=2.0
+typing-extensions
+
+# Interactive UI & Web Apps
+streamlit
+
+# Environment & Utilities
+python-dotenv
+numpy
+scikit-learn
+jupyter
